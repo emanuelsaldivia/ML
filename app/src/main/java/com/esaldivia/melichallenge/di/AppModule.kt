@@ -7,18 +7,21 @@ import com.bumptech.glide.request.RequestOptions
 import com.esaldivia.melichallenge.R
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 
 @Module
 class AppModule {
     // todo app lvl instances, ej Retrofit, glide, room
 
     companion object {
+        @Singleton
         @Provides
         fun provideRequestOptions(): RequestOptions {
             return RequestOptions.placeholderOf(R.drawable.ic_launcher_background) // todo ic
             .error(R.drawable.ic_launcher_foreground) // todo ic
         }
 
+        @Singleton
         @Provides
         fun provideGlideInstance(application: Application,
                                  requestOptions: RequestOptions): RequestManager {
@@ -26,6 +29,7 @@ class AppModule {
                 .setDefaultRequestOptions(requestOptions)
         }
 
+        // todo Retrofit instance
 
     }
 
