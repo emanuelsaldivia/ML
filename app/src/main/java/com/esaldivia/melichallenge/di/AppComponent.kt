@@ -2,6 +2,7 @@ package com.esaldivia.melichallenge.di
 
 import android.app.Application
 import com.esaldivia.melichallenge.BaseApplication
+import com.esaldivia.melichallenge.di.searchitem.SearchItemsViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -12,7 +13,8 @@ import javax.inject.Singleton
 @Component(modules = [
         AndroidSupportInjectionModule::class,
         ActivityBuildersModule::class,
-        AppModule::class
+        AppModule::class,
+        ViewModelFactoryModule::class
     ])
 interface AppComponent : AndroidInjector<BaseApplication>{
 
