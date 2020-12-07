@@ -6,10 +6,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.esaldivia.melichallenge.model.Item
 import com.esaldivia.melichallenge.network.SearchItem.SearchItemApi
+import com.esaldivia.melichallenge.repository.Repository
 import javax.inject.Inject
 
-// todo aca tengo que hacer que pida al repository
-class SearchItemViewModel @Inject constructor(val searchItemApi: SearchItemApi) : ViewModel() {
+// todo deberia mandar una interfaz?
+class SearchItemViewModel @Inject constructor(val repository: Repository) : ViewModel() {
     val TAG = "SearchItemViewModel"
 
+    fun getItems(): List<Item> {
+        return repository.getItems()
+    }
 }

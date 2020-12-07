@@ -9,5 +9,5 @@ interface SearchItemApi {
     @GET("/sites/{siteID}/search?q={name}")
     suspend fun searchItemByName(
         @Path("siteID") siteId: String,
-        @Path("name") name: String): List<Item> // todo revisar return type / deveria ser livedata? observable?
+        @Path("name") name: String): List<Item> // todo revisar return type / networkResponse?
 }
