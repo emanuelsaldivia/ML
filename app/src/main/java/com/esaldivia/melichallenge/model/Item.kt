@@ -1,3 +1,7 @@
 package com.esaldivia.melichallenge.model
 
-data class Item(val id: String, val name: String)
+import com.google.gson.annotations.SerializedName
+
+data class Item(
+    @SerializedName("id") val id: String,
+    @SerializedName("title") val name: String)
