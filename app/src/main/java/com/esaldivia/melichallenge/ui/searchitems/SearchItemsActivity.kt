@@ -5,11 +5,15 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.esaldivia.melichallenge.R
+import com.esaldivia.melichallenge.model.Item
+import com.esaldivia.melichallenge.utils.Status
 import com.esaldivia.melichallenge.viewmodels.ViewModelProviderFactory
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.android.synthetic.main.activity_search_items.*
@@ -49,11 +53,38 @@ class SearchItemsActivity : DaggerAppCompatActivity() {
         return true
     }
 
+    private fun setupObservers(name: String) {
+        viewModel.searchItem(name).observe(this, Observer {
+            it?.let { resource ->
+                when (resource.status) {
+                    Status.SUCCESS -> {
+                        progressBar.visibility = View.GONE
+                        resource.data?.let { response -> retrieveList(response.itemList) }
+                    }
+                    Status.ERROR -> {
+                        progressBar.visibility = View.GONE
+                        Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
+                    }
+                    Status.LOADING -> {
+                        progressBar.visibility = View.VISIBLE
+                    }
+                }
+            }
+        })
+    }
+
+    private fun retrieveList(items: ArrayList<Item>) {
+        recyclerView.apply {
+            adapter = ItemListAdapter(items)
+            (adapter as ItemListAdapter).notifyDataSetChanged()
+        }
+    }
+
     private fun setupRecyclerView() {
-        item_list_recycler_view.apply {
+        recyclerView.apply {
             layoutManager = LinearLayoutManager(baseContext)
 
-            adapter = ItemListAdapter(viewModel.getItems())
+            adapter = ItemListAdapter(arrayListOf())
         }
     }
 
@@ -65,6 +96,11 @@ class SearchItemsActivity : DaggerAppCompatActivity() {
     }
 
     fun search(query: String) {
-        viewModel.getItems()
+        setupObservers(query)
+        recyclerView.apply {
+            val itemListAdapter = adapter as ItemListAdapter
+            itemListAdapter.clearItems()
+            itemListAdapter.notifyDataSetChanged()
+        }
     }
 }

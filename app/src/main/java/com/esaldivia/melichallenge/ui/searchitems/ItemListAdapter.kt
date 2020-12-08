@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.esaldivia.melichallenge.model.Item
 
-class ItemListAdapter(val itemList: List<Item>) : RecyclerView.Adapter<ItemViewHolder>() {
+class ItemListAdapter(val itemList: ArrayList<Item>) : RecyclerView.Adapter<ItemViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return ItemViewHolder(layoutInflater, parent)
@@ -19,6 +19,11 @@ class ItemListAdapter(val itemList: List<Item>) : RecyclerView.Adapter<ItemViewH
         val item = itemList[position]
 
         holder.mNameView.text = item.name
+    }
+
+    fun clearItems() {
+        itemList.clear()
+        notifyDataSetChanged()
     }
 
 }

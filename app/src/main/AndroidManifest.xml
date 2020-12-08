@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeLiChallenge">
-        <activity android:name=".ui.searchitems.SearchItemsActivity">
+        <activity
+            android:name=".ui.searchitems.SearchItemsActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
