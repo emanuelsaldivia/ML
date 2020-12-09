@@ -31,13 +31,6 @@ class SearchItemViewModel @Inject constructor(val repository: Repository, applic
 
     }
 
-    fun searchItem(name: String) = liveData(Dispatchers.IO) {
-        emit(Resource.loading(data = null))
-        try {
-            emit(Resource.succces(data = repository.search(name = name)))
-        } catch (exception: Exception) {
-            val context = getApplication<Application>().applicationContext
-            emit(Resource.error(null, exception.message ?: context.getString(R.string.unexpected_error)))
-        }
-    }
+    fun searchItem(name: String) = repository.renombrar(name,
+        getApplication<Application>().applicationContext)
 }
