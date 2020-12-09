@@ -19,8 +19,8 @@ class AppModule {
         @Singleton
         @Provides
         fun provideRequestOptions(): RequestOptions {
-            return RequestOptions.placeholderOf(R.drawable.ic_launcher_background) // todo ic
-            .error(R.drawable.ic_launcher_foreground) // todo ic
+            return RequestOptions.placeholderOf(R.drawable.ic_launcher_background)
+            .error(R.drawable.ic_baseline_broken_image)
         }
 
         @Singleton

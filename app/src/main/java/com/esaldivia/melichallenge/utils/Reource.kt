@@ -1,6 +1,5 @@
 package com.esaldivia.melichallenge.utils
 
-// todo injectar dependencia?
 class Resource <out T>(val status: Status, val data: T?, val message: String?) {
     companion object{
         fun <T> succces(data: T): Resource<T> = Resource(
