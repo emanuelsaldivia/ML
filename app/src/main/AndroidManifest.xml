@@ -3,6 +3,7 @@
     package="com.esaldivia.melichallenge">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".BaseApplication"
         android:allowBackup="true"
@@ -11,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeLiChallenge">
+        <activity android:name=".ui.itemdisplay.ItemDisplayActivity"></activity>
         <activity
             android:name=".ui.searchitems.SearchItemsActivity"
             android:launchMode="singleTop">
@@ -19,12 +21,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
 
-            <meta-data android:name="android.app.searchable"
+            <meta-data
+                android:name="android.app.searchable"
                 android:resource="@xml/searchable" />
         </activity>
     </application>

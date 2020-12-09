@@ -11,7 +11,7 @@ class Repository @Inject constructor(val itemApi: SearchItemApi){
     suspend fun searchItemByName(siteId: String = Constants.SITE_ID_ARG, name: String): List<Item> = runBlocking {
 
         val result = itemApi.searchItemByName(siteId, name)
-        result.itemList // todo necesito try catch?
+        result.itemList
     }
 
     suspend fun search(siteId: String = Constants.SITE_ID_ARG, name: String)
