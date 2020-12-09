@@ -104,7 +104,9 @@ class SearchItemViewModelTest {
     // Region helper classes
     class ItemApiFake : SearchItemApi {
         override suspend fun searchItemByName(siteId: String, name: String): SearchResponse {
-            val items: ArrayList<Item> = arrayListOf(Item("id", "name", "url"))
+            val items: ArrayList<Item> = arrayListOf(
+                Item("id", "name", "url", 100.0, "thumnail", "url")
+            )
             return SearchResponse(items)
         }
 
