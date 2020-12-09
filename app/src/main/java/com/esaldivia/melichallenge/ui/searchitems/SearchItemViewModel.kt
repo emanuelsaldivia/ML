@@ -20,17 +20,6 @@ import kotlin.coroutines.coroutineContext
 class SearchItemViewModel @Inject constructor(val repository: Repository, application: Application) : AndroidViewModel(application) {
     val TAG = "SearchItemViewModel"
 
-    private val _items = MutableLiveData<List<Item>>().apply { value = emptyList() }
-    val items: LiveData<List<Item>> = _items
-
-    fun searchItemByName(query: String) {
-        viewModelScope.launch {
-            val response = repository.searchItemByName(name = query)
-            _items.value = response
-        }
-
-    }
-
     fun searchItem(name: String) = repository.renombrar(name,
         getApplication<Application>().applicationContext)
 }
